@@ -1,5 +1,6 @@
+import getLocalStorage from "../../../functions/getLocalStorage";
 const initialState = {
-  list: [],
+  list: getLocalStorage('POKE_TEAM', []),
   error: null,
 };
 
@@ -9,6 +10,7 @@ const SET_ERROR = "pokelist/SET_ERROR";
 export const changeTeam = (payload) => ({
   type: CHANGE_TEAM,
   payload: payload,
+  meta: 'POKE_TEAM',
 });
 export const setError = (payload) => ({
   type: SET_ERROR,
