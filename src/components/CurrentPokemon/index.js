@@ -2,7 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTeam, setError } from "../../store/reducers/PokemonTeam";
 import { ThemeButton } from "../../styles/GlobalComponents";
-import { CurrentPokemonBox, ImageGrid } from "./styles";
+import StatsBar from "./StatsBar";
+import { CurrentPokemonBox, ImageGrid, StatsList } from "./styles";
 
 const CurrentPokemon = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,13 @@ const CurrentPokemon = () => {
               {currentPokemon.data.name}
               <span>N°{currentPokemon.data.id}</span>
             </h1>
-            <ThemeButton buttonSize buttonStyle="solid1" onClick={() => addPokemon()}>Adicionar ao time</ThemeButton >
+            <ThemeButton
+              buttonSize
+              buttonStyle="solid1"
+              onClick={() => addPokemon()}
+            >
+              Adicionar ao time
+            </ThemeButton>
           </header>
           <ImageGrid>
             <img
@@ -41,6 +48,11 @@ const CurrentPokemon = () => {
               alt={currentPokemon.data.name}
             />
           </ImageGrid>
+          <StatsList>
+            {currentPokemon.data.stats.map((stat) => (
+              <StatsBar statValue={stat.base_stat} statName={stat.stat.name} />
+            ))}
+          </StatsList>
         </div>
       ) : (
         <div>

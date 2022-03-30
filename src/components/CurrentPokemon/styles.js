@@ -30,3 +30,10 @@ export const ImageGrid = styled.div`
     width: 160px;
     background: var(--light-gray);
 `
+
+export const StatsList = styled.ul`
+    width: calc(100% - 192px);
+    margin-top: 2rem;
+    background: var(--light-gray);
+    padding: 2rem;
+`
