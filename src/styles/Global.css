@@ -19,6 +19,10 @@ ul, ol{
     margin: 0;
     list-style: none;
 }
+a{
+    color: unset;
+    text-decoration: none;
+}
 img{
     max-width: 100%;
 }

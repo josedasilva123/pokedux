@@ -1,34 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect} from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getPokemon } from "../../../store/reducers/CurrentPokemon";
-import PokeballVector from "../../../assets/PokeballSVG.svg"
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+
+import { Link } from "react-router-dom";
+
+import PokeballVector from "../../../assets/PokeballSVG.svg";
+
 import { PokemonCardBox } from "./styles";
 
 const PokemonListCard = ({ index, pokemon, cardStyle }) => {
-  const [active, setActive] = useState(false);  
-  const currentPokemon = useSelector((store) => store.currentPokemon);  
-  const dispatch = useDispatch();
+  const [active, setActive] = useState(false);
+
+  const currentPokemon = useSelector((store) => store.currentPokemon);
 
   useEffect(() => {
-    if(currentPokemon){
-        if(currentPokemon.data?.name === pokemon.name){
-            setActive(true);
-            console.log(pokemon.name)
-        } else {
-            setActive(false);
-        }
+    if (currentPokemon) {
+      if (currentPokemon.data?.name === pokemon.name) {
+        setActive(true);
+        console.log(pokemon.name);
+      } else {
+        setActive(false);
+      }
     }
-  }, [currentPokemon]);   
+  }, [currentPokemon]);
 
   return (
-    <PokemonCardBox active={active} onClick={() => dispatch(getPokemon(pokemon.url))}>
+    <Link to={`/${pokemon.name}`}>
+      <PokemonCardBox active={active}>
         <img src={PokeballVector} alt="Pokeball" />
         <div>
-            {cardStyle === "pokemonlist" && <span>#{index + 1}</span>}
-            <h3>{pokemon.name}</h3>
+          {cardStyle === "pokemonlist" && <span>#{index + 1}</span>}
+          <h3>{pokemon.name}</h3>
         </div>
-    </PokemonCardBox>
+      </PokemonCardBox>
+    </Link>
   );
 };
 

@@ -1,14 +1,29 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getPokemon } from "../../store/reducers/CurrentPokemon";
 import { changeTeam, setError } from "../../store/reducers/PokemonTeam";
-import { ThemeButton } from "../../styles/GlobalComponents";
+
 import StatsBar from "./StatsBar";
+
+import { useParams } from "react-router-dom";
+
+import { ThemeButton } from "../../styles/GlobalComponents";
 import { CurrentPokemonBox, ImageGrid, StatsList } from "./styles";
 
 const CurrentPokemon = () => {
   const dispatch = useDispatch();
+  const {id} = useParams();
   const currentPokemon = useSelector((store) => store.currentPokemon);
   const poketeam = useSelector((store) => store.pokemonTeam);
+
+  useEffect(() => {
+    if(id){
+      dispatch(getPokemon(`https://pokeapi.co/api/v2/pokemon/${id}`));  
+      console.log('teste');    
+    }
+  },[id, ])
+
 
   function addPokemon() {
     const team = [...poketeam.list];
@@ -56,7 +71,11 @@ const CurrentPokemon = () => {
         </div>
       ) : (
         <div>
-          <h1>Bem vindo ao Pokedex</h1>
+          {currentPokemon?.loading ? (
+            <span>Carregando...</span>
+          ) : (
+            <h1>Bem vindo ao Pokedex</h1>
+          )}
         </div>
       )}
     </CurrentPokemonBox>
