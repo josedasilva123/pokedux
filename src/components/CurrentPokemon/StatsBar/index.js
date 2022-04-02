@@ -8,7 +8,7 @@ const StatsBar = ({statValue, statName}) => {
   const [inactiveBars, setInactiveBars]  = useState(null);  
 
   useEffect(() => {
-    const maxBars = 18;  
+    const maxBars = 24;  
     const activeBarsNumber = Math.round(statValue/10);
     const inactiveBarNumber = maxBars - activeBarsNumber;
     setActiveBars(activeBarsNumber);
@@ -28,7 +28,7 @@ const StatsBar = ({statValue, statName}) => {
         <p>{statName}</p>
         <li>
             {activeBars && createBars(activeBars).map((bar, index) => <StatBar key={index} />)}   
-            {inactiveBars && createBars(inactiveBars).map((bar, index) => <StatBar key={index} inactive />)}
+            {inactiveBars && createBars(inactiveBars).map((bar, index) => <StatBar key={`inactive-${index}`} inactive />)}
         </li>
     </StatsBarGrid>
   )

@@ -65,7 +65,7 @@ const CurrentPokemon = () => {
           </ImageGrid>
           <StatsList>
             {currentPokemon.data.stats.map((stat) => (
-              <StatsBar statValue={stat.base_stat} statName={stat.stat.name} />
+              <StatsBar key={stat.name} statValue={stat.base_stat} statName={stat.stat.name} />
             ))}
           </StatsList>
         </div>

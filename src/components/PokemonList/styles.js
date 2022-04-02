@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
-export const PokemonListBox = styled.aside`
+export const PokemonListGrid = styled.aside`
+    width: 100%;
+    max-width: 300px;
+`
+export const PokemonListBox = styled.div`
    width: 100%; 
-   max-width: 300px;
+   
    ul{
     max-height: 80vh;
     overflow-y: scroll;

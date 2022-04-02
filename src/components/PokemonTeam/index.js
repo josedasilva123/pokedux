@@ -1,22 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import PokemonTeamCard from "./PokemonTeamCard";
+import PokemonDragList from "./DragAndDrop/PokemonDragList";
 
 const PokemonTeam = () => {
   const pokemonTeam = useSelector((store) => store.pokemonTeam);
-
+  
   return (
     <>
-      {pokemonTeam.list?.length > 0 && (
-        <ul>
-          {pokemonTeam.list?.map((pokemon, index) => (
-            <PokemonTeamCard key={index} index={index} pokemon={pokemon} />
-          ))}
-        </ul>
-      )}
+      <PokemonDragList data={pokemonTeam.list} dropType="pokemon" />
       {pokemonTeam.error && <p>{pokemonTeam.error}</p>}
-      <button onClick={() => console.log(pokemonTeam)}>Ver lista</button>
     </>
+    
   );
 };
 

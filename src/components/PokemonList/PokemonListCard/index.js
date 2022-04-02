@@ -8,7 +8,7 @@ import PokeballVector from "../../../assets/PokeballSVG.svg";
 
 import { PokemonCardBox } from "./styles";
 
-const PokemonListCard = ({ index, pokemon, cardStyle }) => {
+const PokemonListCard = ({ index, pokemon, cardStyle, onClick}) => {
   const [active, setActive] = useState(false);
 
   const currentPokemon = useSelector((store) => store.currentPokemon);
@@ -26,7 +26,7 @@ const PokemonListCard = ({ index, pokemon, cardStyle }) => {
 
   return (
     <Link to={`/${pokemon.name}`}>
-      <PokemonCardBox active={active}>
+      <PokemonCardBox active={active} onClick={onClick}>
         <img src={PokeballVector} alt="Pokeball" />
         <div>
           {cardStyle === "pokemonlist" && <span>#{index + 1}</span>}
