@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 const DragList = ({ data, listData, listIndex, dropType }) => {
   // const dispatch = useDispatch();
-  const [hover, setHover] = useState(false);
+  // state de Hover, para efeitos visuais, pode ser passado como prop para um styled components
+  //const [hover, setHover] = useState(false);
   const {draggingElement, hoverElement} = useSelector((store) => store.example);  
 
   function onDragOver(event) {
     event.preventDefault();
-    setHover(true);
+    //setHover(true);
   }
 
   //Exemplo de onDrop script
@@ -26,12 +27,12 @@ const DragList = ({ data, listData, listIndex, dropType }) => {
         updatedData[listIndex].push(draggedItem);
         // dispatch(setData(updatedData));
       }
-      setHover(false);
+      //setHover(false);
     }
   }
 
   return (
-    <ul onDragOver={onDragOver} onDrop={onDrop} hover={hover}>
+    <ul onDragOver={onDragOver} onDrop={onDrop}>
        {listData && listData.map((itemData, index) => (
         <>
             Custom Drag Element Components
