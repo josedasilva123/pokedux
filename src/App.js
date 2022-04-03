@@ -7,10 +7,9 @@ import { Routes, Route } from "react-router-dom";
 import { Container } from "./styles";
 
 import "./styles/Global.css";
+import Header from "./components/Header";
 
 function App() {
-
- 
   return (
     <>
       <Routes>
@@ -18,6 +17,7 @@ function App() {
           index
           element={
             <>
+              <Header />
               <Container>
                 <PokemonList />
                 <CurrentPokemon />
@@ -28,6 +28,7 @@ function App() {
         ></Route>
         <Route path="/:id" element={
            <>
+           <Header />
            <Container>
              <PokemonList />
              <CurrentPokemon />

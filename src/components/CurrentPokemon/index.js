@@ -2,7 +2,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemon } from "../../store/reducers/CurrentPokemon";
-import { changeTeam, setError } from "../../store/reducers/PokemonTeam";
+import { toggleModal, changeTeam, setError } from "../../store/reducers/PokemonTeam";
 
 import StatsBar from "./StatsBar";
 
@@ -32,6 +32,7 @@ const CurrentPokemon = () => {
       if (!team?.find((p) => p.name === currentPokemon.data.name)) {
         const newTeam = [...team, currentPokemon.data];
         dispatch(changeTeam(newTeam));
+        dispatch(toggleModal(true));
       } else {
         dispatch(setError("Desculpe, este pokemon já está no seu time."));
       }

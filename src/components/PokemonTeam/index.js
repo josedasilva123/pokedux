@@ -1,16 +1,29 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleModal } from "../../store/reducers/PokemonTeam";
+
 import PokemonDragList from "./DragAndDrop/PokemonDragList";
 
+import { PokemonTeamBox } from "./style";
+
 const PokemonTeam = () => {
-  const pokemonTeam = useSelector((store) => store.pokemonTeam);
-  
+  const dispatch = useDispatch();
+  const { modal, list, error } = useSelector((store) => store.pokemonTeam);
+
+  function handleClose() {
+    dispatch(toggleModal(false));
+  }
+
   return (
     <>
-      <PokemonDragList data={pokemonTeam.list} dropType="pokemon" />
-      {pokemonTeam.error && <p>{pokemonTeam.error}</p>}
+      {modal && (
+        <PokemonTeamBox>
+          <button onClick={handleClose}>Fechar</button>
+          <PokemonDragList data={list} dropType="pokemon" />
+          {error && <p>{error}</p>}
+        </PokemonTeamBox>
+      )}
     </>
-    
   );
 };
 
