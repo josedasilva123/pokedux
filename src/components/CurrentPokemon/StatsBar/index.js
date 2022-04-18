@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect} from 'react'
-
+import React, {useState, useEffect} from 'react';
 import { StatBar, StatsBarGrid } from './styles';
 
 const StatsBar = ({statValue, statName}) => {
@@ -31,10 +30,10 @@ const StatsBar = ({statValue, statName}) => {
   return (
     <StatsBarGrid>
         <p>{statName}</p>
-        <li>
+        <div>
             {activeBars > 0 && createBars(activeBars).map((bar, index) => <StatBar key={index} />)}   
             {inactiveBars > 0 && createBars(inactiveBars).map((bar, index) => <StatBar key={`inactive-${index}`} inactive />)}
-        </li>
+        </div>
     </StatsBarGrid>
   )
 }

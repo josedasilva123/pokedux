@@ -2,6 +2,7 @@ import getLocalStorage from "../../../functions/getLocalStorage";
 const initialState = {
   modal: false,
   list: getLocalStorage('POKE_TEAM', []),
+  maxPower: 2800,
   error: null,
 };
 

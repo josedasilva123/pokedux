@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import PokemonListCard from "./PokemonListCard";
-import SearchForm from "../SearchForm";
+import SearchForm from "./SearchForm";
 import { PokemonListBox, PokemonListGrid } from "./styles";
 
 const PokemonList = () => {

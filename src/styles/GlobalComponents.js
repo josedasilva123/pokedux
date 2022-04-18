@@ -1,5 +1,103 @@
 import styled, { css } from "styled-components";
 
+export const Container = styled.div`
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: .8rem;
+`
+
+export const FlexGrid = styled.div`
+  display: flex;
+  ${(props) => {
+    switch (props.alignItems) {
+      case "center":
+        return css`
+          align-items: center;
+        `;
+      case "flex-end":
+        return css`
+          align-items: flex-end;
+        `;
+      default:
+        return css`
+          align-items: flex-start;
+        `;
+    }
+  }}
+  ${(props) => {
+    switch (props.justifyContent) {
+      case "center":
+        return css`
+          justify-content: center;
+        `;
+      case "flex-end":
+        return css`
+          justify-content: flex-end;
+        `;
+       case "space-between":
+        return css`
+          justify-content: space-between;
+        `; 
+      case "space-around":
+        return css`
+          justify-content: space-around;
+        `;     
+      default:
+        return css`
+          justify-content: flex-start;
+        `;
+    }
+  }}
+  ${(props) => {
+    switch (props.flexDirection) {
+      case "column":
+        return css`
+          flex-direction: column;
+        `;
+      case "column-reverse":
+        return css`
+          flex-direction: column-reverse;
+        `;
+      case "row-reverse":
+        return css`
+          flex-direction: row-reverse;
+          @media (max-width: 900px){
+            flex-direction: column;
+          }
+        `;  
+      default:
+        return css`
+          flex-direction: row;
+          @media (max-width: 900px){
+            flex-direction: column;
+          }
+        `;
+    }
+  }}
+  ${(props) => {
+    switch (props.mobileOrientation) {
+      case "reverse":
+        return css`
+          @media (max-width: 900px){
+            flex-direction: column-reverse;
+          }         
+        `;   
+      case "row":
+        return css`
+          @media (max-width: 900px){
+            flex-direction: row;
+          }         
+        `;          
+      default:
+        return css`
+          @media (max-width: 900px){
+            flex-direction: column;
+          }
+        `;
+    }
+  }}
+`
 export const ThemeButton = styled.button`
   cursor: pointer;
 
@@ -48,6 +146,17 @@ export const ThemeButton = styled.button`
                 filter: brightness(1.1);
             }
             `
+          case "outline2":
+          return css`
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--white);
+            &:hover {
+                background: var(--white);
+                color: var(--red);
+                filter: brightness(1.1);
+            }
+            `  
           default:
               return;      
       }

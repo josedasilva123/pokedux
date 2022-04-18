@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
 export const PokemonListGrid = styled.aside`
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 300px;
+    @media (max-width: 900px){
+        padding: 1rem;
+        max-width: unset;
+    }
 `
 export const PokemonListBox = styled.div`
-   width: 100%; 
-   
+   width: 100%;    
    ul{
     max-height: 80vh;
     overflow-y: scroll;
@@ -21,6 +26,9 @@ export const PokemonListBox = styled.div`
     }
     &::-webkit-scrollbar-thumb:hover {
         filter: brightness(1.1);
+    }
+    @media (max-width: 900px){
+        max-height: 300px;
     }
    }  
 `

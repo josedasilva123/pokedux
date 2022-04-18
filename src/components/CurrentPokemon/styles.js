@@ -20,6 +20,10 @@ export const CurrentPokemonBox = styled.section`
             opacity: .5;
         }
     }
+    @media (max-width: 900px){
+        padding: 1rem;
+        width: 100%;
+    }
 `
 
 export const ImageGrid = styled.div`
@@ -32,8 +36,48 @@ export const ImageGrid = styled.div`
 `
 
 export const StatsList = styled.ul`
-    width: calc(100% - 192px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     margin-top: 2rem;
     background: var(--light-gray);
     padding: 2rem;
+`
+
+export const PowerLevel = styled.div`
+
+    width: 100%;
+    max-width: 375px;
+
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+
+    small{
+        font-family: Roboto;
+        font-size: .875rem;
+        text-transform: uppercase;
+    }
+
+    p{
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+    span{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 48px;
+        height: 48px;
+        border-radius: 255px;
+
+        background: var(--blue);        
+
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--white);        
+    }
+    
 `

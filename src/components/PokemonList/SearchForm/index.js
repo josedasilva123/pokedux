@@ -1,12 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux';
-import PokemonListCard from '../PokemonList/PokemonListCard';
+
+import PokemonListCard from '../PokemonListCard';
+
+import { MdSearch } from 'react-icons/md';
+
+import { SearchFormBox } from './styles';
 
 const SearchForm = () => {
   const pokemonList = useSelector((store) => store.pokemonList);
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState(null); 
+
   useEffect(() => {
     if(search.length > 2){
       console.log(pokemonList.data);
@@ -26,17 +32,21 @@ const SearchForm = () => {
       setSearchResults(null);
     }
   }, [search])
+
   return (
-    <div>
+    <SearchFormBox>
         <form>
-            <input type="text" value={search} onInput={(e) => setSearch(e.target.value)} />
+            <label>
+              <input type="text" placeholder="Busque um pokémon..." value={search} onInput={(e) => setSearch(e.target.value)} />
+              <span><MdSearch size={21} /></span>
+            </label>            
         </form>
         <div>
           {searchResults?.map((result, index) => (
             <PokemonListCard key={result.id} pokemon={result} index={index} onClick={() => setSearch('')}/>
           ))}
         </div>
-    </div>
+    </SearchFormBox>
   )
 }
 

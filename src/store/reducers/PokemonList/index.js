@@ -30,7 +30,7 @@ export function getPokemonList(){
     return async (dispatch, getState) => {
         try {
            dispatch(fetchStarted());
-           const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+           const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=251");
            const json = await response.json();
            console.log(json);
            dispatch(fetchSucess(json.results)); 

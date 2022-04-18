@@ -12,6 +12,8 @@
     --white: #fff;
 }
 body{
+    padding: 0;
+    margin: 0;
     background: var(--light-gray2);
 }
 ul, ol{

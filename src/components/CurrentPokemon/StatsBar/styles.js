@@ -1,12 +1,14 @@
 import styled, {css} from "styled-components";
 
-export const StatsBarGrid = styled.div`
+export const StatsBarGrid = styled.li`
+    width: 100%;
+    max-width: 375px;
     p{
       font-size: .875rem;
       font-weight: bold;
       text-transform: uppercase ;
     }
-    li{
+    div{
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
@@ -31,4 +33,7 @@ export const StatBar = styled.span`
         background: var(--blue);
        }
    } 
+   @media (max-width: 480px){
+     height: 24px;
+   }
 `;

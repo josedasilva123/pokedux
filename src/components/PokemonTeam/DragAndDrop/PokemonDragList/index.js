@@ -32,6 +32,7 @@ const PokemonDragList = ({ data, dropType }) => {
     <ul onDragOver={onDragOver} onDrop={onDrop}>
        {data && data.map((itemData, index) => (
         <PokemonTeamCard
+          key={itemData.id}
           itemData={itemData}
           index={index}
           dropType={dropType}
