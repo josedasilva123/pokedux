@@ -7,7 +7,7 @@ function App() {
     <>
       <Routes> {/* Switch */}
         <Route index element={<Main />} />
-        <Route path="/:id" element={<Main />} />
+        <Route path="/:id/" element={<Main />} />
       </Routes>
     </>
   );

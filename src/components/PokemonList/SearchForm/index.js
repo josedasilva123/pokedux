@@ -14,11 +14,8 @@ const SearchForm = () => {
   const [searchResults, setSearchResults] = useState(null); 
 
   useEffect(() => {
-    if(search.length > 2){
-      console.log(pokemonList.data);
-     
+    if(search.length > 2){     
       const regex = new RegExp(search);
-      console.log(regex);
       
       const filter = pokemonList.data?.filter((pokemon) =>  pokemon.name.match(regex));      
       
@@ -43,7 +40,7 @@ const SearchForm = () => {
         </form>
         <div>
           {searchResults?.map((result, index) => (
-            <PokemonListCard key={result.id} pokemon={result} index={index} onClick={() => setSearch('')}/>
+            <PokemonListCard key={`search${index}`} pokemon={result} index={index} onClick={() => setSearch('')}/>
           ))}
         </div>
     </SearchFormBox>

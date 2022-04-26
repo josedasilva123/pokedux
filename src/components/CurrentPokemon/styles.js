@@ -9,6 +9,10 @@ export const CurrentPokemonBox = styled.section`
         align-items: center;
         justify-content: space-between;
         gap: 2rem;
+        div{
+            display: flex;
+            gap: .6rem;
+        }
     }
     h1{
         display: flex;
@@ -23,6 +27,24 @@ export const CurrentPokemonBox = styled.section`
     @media (max-width: 900px){
         padding: 1rem;
         width: 100%;
+       
+    }
+    @media (max-width: 520px){
+        header{
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }    
+    }
+    @media (max-width: 400px){
+        header > div{
+            width: 100%;
+            flex-direction: column-reverse;
+            button{
+                width: 100%;
+            }
+        }    
     }
 `
 

@@ -8,18 +8,9 @@ import PokeballVector from "../../../assets/PokeballSVG.svg";
 
 import { PokemonCardBox } from "./styles";
 
-const PokemonListCard = ({ index, pokemon, cardStyle, onClick}) => {
+const PokemonListCard = ({ index, pokemon, cardStyle, onClick }) => {
   const [active, setActive] = useState(false);
-  const [counter, setCounter] = useState(0);
-
   const currentPokemon = useSelector((store) => store.currentPokemon);
-
-  function handleClick(){  
-    if(window.innerWidth < 901){
-      window.scrollTo(0,0);
-    }
-    onClick();
-  }
 
   useEffect(() => {
     if (currentPokemon) {
@@ -34,7 +25,7 @@ const PokemonListCard = ({ index, pokemon, cardStyle, onClick}) => {
 
   return (
     <Link to={`/${pokemon.name}`}>
-      <PokemonCardBox active={active} onClick={handleClick}>
+      <PokemonCardBox active={active} onClick={onClick}>
         <img src={PokeballVector} alt="Pokeball" />
         <div>
           {cardStyle === "pokemonlist" && <span>#{index + 1}</span>}

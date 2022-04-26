@@ -13,12 +13,14 @@ const TOGGLE_MODAL = "pokelist/TOGGLE_MODAL";
 export const toggleModal = (payload) => ({
   type: TOGGLE_MODAL,
   payload: payload,
-})
+});
+
 export const changeTeam = (payload) => ({
   type: CHANGE_TEAM,
   payload: payload,
   meta: 'POKE_TEAM',
 });
+
 export const setError = (payload) => ({
   type: SET_ERROR,
   payload: payload,

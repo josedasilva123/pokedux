@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const initialState = {
     loading: false,
     data: null,
@@ -30,10 +32,9 @@ export function getPokemonList(){
     return async (dispatch, getState) => {
         try {
            dispatch(fetchStarted());
-           const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=251");
-           const json = await response.json();
-           console.log(json);
-           dispatch(fetchSucess(json.results)); 
+           const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=251");      
+           console.log(response.data);
+           dispatch(fetchSucess(response.data.results)); 
         } catch (error) {
            return dispatch(fetchError('Não foi possível carregar os pokémons.'));    
         }

@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const SearchFormBox = styled.div`
     position: relative;
     z-index: 3;
+    a{
+        display: block;
+    }
     label{
         display: block;
         position: relative;
@@ -32,5 +35,11 @@ export const SearchFormBox = styled.div`
         background: var(--white);
         width: 100%;
         max-width: 300px;
+        box-shadow: 0 0 12px 0 rgba(0,0,0,.1);
+    }
+    @media (max-width: 900px){
+        & > div{
+            max-width: unset;   
+        }    
     }
 `

@@ -6,7 +6,6 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: .8rem;
 `
-
 export const FlexGrid = styled.div`
   display: flex;
   ${(props) => {
@@ -146,6 +145,34 @@ export const ThemeButton = styled.button`
                 filter: brightness(1.1);
             }
             `
+          case "solid2":
+          return css`
+            background: var(--light-red);
+            color: var(--black);
+            &:hover {
+                filter: brightness(1.1);
+            }
+            `
+          case "outline1":
+          return css`
+            background: transparent;
+            color: var(--red);
+            border: 1px solid var(--red);
+            &:hover {
+              background: var(--red);
+              color: var(--white);
+              filter: brightness(1.1);
+            }
+            &:disabled{
+              cursor: not-allowed;
+              opacity: .5;
+              &:hover{
+                background: transparent;
+                color: var(--red);
+                filter: none;
+              }
+            }
+          `    
           case "outline2":
           return css`
             background: transparent;

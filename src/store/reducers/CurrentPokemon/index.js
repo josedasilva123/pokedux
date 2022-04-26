@@ -1,5 +1,5 @@
 const initialState = {
-    loading: false,
+    loading: false, // counter
     data: null,
     error: null,
 }
@@ -29,9 +29,8 @@ const reducer = (state = initialState, action) => {
     }
 } 
 
-
 export function getPokemon(url){
-    return async (dispatch, getState) => {
+    return async (dispatch, getState) => {       
         try {
            dispatch(fetchStarted());
            const response = await fetch(url);

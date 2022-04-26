@@ -3,10 +3,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemon } from "../../store/reducers/CurrentPokemon";
-import {
-  toggleModal,
-  changeTeam,
-} from "../../store/reducers/PokemonTeam";
+import { toggleModal, changeTeam } from "../../store/reducers/PokemonTeam";
+import { setBattle } from "../../store/reducers/PokemonBattle";
 
 import StatsBar from "./StatsBar";
 
@@ -24,7 +22,7 @@ const CurrentPokemon = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const currentPokemon = useSelector((store) => store.currentPokemon);
-  const {list, maxPower, error} = useSelector((store) => store.pokemonTeam);
+  const { list, maxPower, error } = useSelector((store) => store.pokemonTeam);
 
   useEffect(() => {
     if (id) {
@@ -38,18 +36,26 @@ const CurrentPokemon = () => {
       if (!team?.find((p) => p.name === currentPokemon.data.name)) {
         const newTeam = [...team, currentPokemon.data];
         const newTeamPower = getTeamPower(newTeam);
-        if(maxPower > newTeamPower){
-          dispatch(changeTeam(newTeam));          
+        if (maxPower > newTeamPower) {
+          dispatch(changeTeam(newTeam));
         } else {
-          setGlobalError(error, dispatch, "Desculpe, seu time está poderoso demais");
-        }      
+          setGlobalError(
+            error,
+            dispatch,
+            "Desculpe, seu time está poderoso demais"
+          );
+        }
       } else {
-        setGlobalError(error, dispatch, "Desculpe, este pokemon já está no seu time.");
+        setGlobalError(
+          error,
+          dispatch,
+          "Desculpe, este pokemon já está no seu time."
+        );
       }
     } else {
-      setGlobalError(error, dispatch, "Desculpe, seu time está cheio.");      
+      setGlobalError(error, dispatch, "Desculpe, seu time está cheio.");
     }
-    dispatch(toggleModal(true));  
+    dispatch(toggleModal(true));
   }
 
   return (
@@ -61,13 +67,27 @@ const CurrentPokemon = () => {
               {currentPokemon.data.name}
               <span>N°{currentPokemon.data.id}</span>
             </h1>
-            <ThemeButton
-              buttonSize
-              buttonStyle="solid1"
-              onClick={() => addPokemon()}
-            >
-              Adicionar ao time
-            </ThemeButton>
+            <div>
+              {list.length > 0 ? (
+                <ThemeButton
+                  buttonStyle="outline1"
+                  onClick={() => dispatch(setBattle(true))}
+                >
+                  Desafiar
+                </ThemeButton>
+              ) : (
+                <ThemeButton buttonStyle="outline1" disabled={true}>
+                  Desafiar
+                </ThemeButton>
+              )}
+              <ThemeButton
+                buttonSize
+                buttonStyle="solid1"
+                onClick={() => addPokemon()}
+              >
+                Adicionar ao time
+              </ThemeButton>
+            </div>
           </header>
           <ImageGrid>
             <img
@@ -83,9 +103,9 @@ const CurrentPokemon = () => {
                 {getTierRank(getPowerLevel(currentPokemon.data.stats))}
               </span>
             </PowerLevel>
-            {currentPokemon.data.stats.map((stat) => (
+            {currentPokemon.data.stats.map((stat, index) => (
               <StatsBar
-                key={stat.name}
+                key={index}
                 statValue={stat.base_stat}
                 statName={stat.stat.name}
               />

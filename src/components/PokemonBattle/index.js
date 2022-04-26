@@ -1,60 +1,163 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect} from 'react'
-import { useSelector } from 'react-redux'
-import { getBattleStats } from '../../functions/getPokemonPower';
-import Moves from './Moves';
+import React, { useEffect } from "react";
 
-const PokemonBattle = () => {   
-  
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setPlayer,
+  setEnemy,
+  setPlayerHP,
+  setEnemyHP,
+  setChat,
+  resetBattle,
+} from "../../store/reducers/PokemonBattle";
+import { getBattleStats } from "../../functions/getPokemonPower";
+
+import BattleChat from "./BattleChat";
+import Moves from "./Moves";
+import HPBox from "./HPBox";
+
+import { Battle, BattleGrid, BattleBox, MoveListBox, Sprite } from "./styles";
+
+const PokemonBattle = () => {
+  const dispatch = useDispatch();
+
   const currentPokemon = useSelector((store) => store.currentPokemon);
-  const {list} = useSelector((store) =>  store.pokemonTeam);
+  const { battle, battleChat, player, enemy, playerHP, enemyHP } = useSelector(
+    (store) => store.pokemonBattle
+  );
+  const { list } = useSelector((store) => store.pokemonTeam);
 
-  const [battle, setBattle] = useState(false);  
-  const [playerStats, setPlayerStats] = useState([]);
-  const [playerMoves, setPlayerMoves] = useState();
-  const [enemyStats, setEnemyStats] = useState([]);
-  const [enemyMoves, setEnemyMoves] = useState();
- 
-
+  /* Efeito que inicia e reinicia a batalha */
   useEffect(() => {
-    if(battle){
-        // Player's Pokemon 
-        const newPlayerStats = getBattleStats(list[0].stats, 31, 50);
-        const newPlayerMoves = list[0].moves;
-        newPlayerMoves.length = 4;
+    if (battle) {
+      // Player's Pokemon
+      const newPlayerStats = getBattleStats(list[0].stats, 31, 50);
+      const newPlayerMoves = [...list[0].moves];
+      newPlayerMoves.length = 4;
 
-        // Enemy's Pokemon
-        const newEnemyStats = getBattleStats(currentPokemon.data.stats, 31, 50);
-        const newEnemyMoves = currentPokemon.data.moves;
-        newEnemyMoves.length = 4;
-        
-        setBattle(true);
+      // Enemy's Pokemon
+      const newEnemyStats = getBattleStats(currentPokemon.data.stats, 31, 50);
+      const newEnemyMoves = currentPokemon.data.moves;
+      newEnemyMoves.length = 4;
 
-        setPlayerStats(newPlayerStats);
-        setPlayerMoves(newPlayerMoves);
-        setEnemyStats(newEnemyStats);
-        setEnemyMoves(newEnemyMoves);
+      //Max HP
+      const maxPlayerHP = newPlayerStats[0].value;
+      const maxEnemyHP = newEnemyStats[0].value;
+      dispatch(setPlayerHP(maxPlayerHP));
+      dispatch(setEnemyHP(maxEnemyHP));
+
+      //Set o pokémon do jogador com base no primeiro Pokémon do time
+      dispatch(
+        setPlayer({
+          name: list[0].name,
+          types: list[0].types,
+          stats: newPlayerStats,
+          moves: newPlayerMoves,
+        })
+      );
+
+      //Set o pokémon inimigo
+      dispatch(
+        setEnemy({
+          name: currentPokemon.data.name,
+          types: currentPokemon.data.types,
+          stats: newEnemyStats,
+          moves: newEnemyMoves,
+        })
+      );
     }
-  }, [battle])
+  }, [battle]);
+
+  /* Efeito que monitora a vida dos pokémon para declarar a vitória */
+  useEffect(() => {
+    if (battle) {
+      if (enemyHP <= 0) {
+        dispatch(
+          setChat([
+            {
+              text: `${enemy.name.toUpperCase()} foi derrotado...`,
+            },
+            {
+              text: "Parabéns, você venceu!!!",
+              callback: () => dispatch(resetBattle()),
+            },
+          ])
+        );
+      } else if (playerHP <= 0) {
+        dispatch(
+          setChat([
+            {
+              text: `${player.name.toUpperCase()} foi derrotado...`,
+            },
+            {
+              text: "Que pena, você perdeu...",
+              callback: () => dispatch(resetBattle()),
+            },
+          ])
+        );
+      }
+    }
+  }, [playerHP, enemyHP]);
+
+  function handleRun() {
+    dispatch(
+      setChat([
+        {
+          text: "Você fugiu em segurança...",
+          callback: () => dispatch(resetBattle()),
+        },
+      ])
+    );
+  }
 
   return (
     <>
-        {battle ? (
-            <div>
-                <img src={list[0].sprites.back_default} alt="Enemy Sprite" />
-                {playerMoves?.map((move) => (
+      {battle && (
+        <Battle>
+          <div className="overlay">
+            <BattleGrid>
+              <BattleBox>
+                <div>
+                  <Sprite
+                    owner="enemy"
+                    src={currentPokemon.data.sprites.front_default}
+                    alt="Enemy Sprite"
+                    fainted={enemyHP > 0 ? false : true}
+                  />
+                  <HPBox
+                    currentHP={enemyHP ? enemyHP : 0}
+                    maxHP={enemy?.stats ? enemy?.stats[0].value : 0}
+                  />
+                </div>
+                <div>
+                  <Sprite
+                    owner="player"
+                    src={list[0]?.sprites.back_default}
+                    alt="Enemy Sprite"
+                    fainted={playerHP > 0 ? false : true}
+                  />
+                  {playerHP && (
+                    <HPBox
+                      currentHP={playerHP}
+                      maxHP={player?.stats[0].value}
+                    />
+                  )}
+                </div>
+              </BattleBox>
+              {battleChat?.length > 0 && <BattleChat />}
+              <MoveListBox hidden={battleChat?.length > 0 ? true : false}>
+                {player.moves?.map((move) => (
                   <Moves move={move.move} key={move.move.name} />
                 ))}
-                <button onClick={() => console.log(playerStats, playerMoves)}>Player Status</button>
-                <img src={currentPokemon.data.sprites.front_default} alt="Enemy Sprite" />
-                <button onClick={() => console.log(enemyStats, enemyMoves)}>Enemy Status</button>
-                
-            </div>
-        ) : (
-            <button onClick={() => setBattle(true)}>Start Battle</button>
-        )}
+                <button onClick={handleRun}>Fugir</button>
+              </MoveListBox>
+            </BattleGrid>
+            )
+          </div>
+        </Battle>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default PokemonBattle
+export default PokemonBattle;

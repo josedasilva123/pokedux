@@ -14,7 +14,7 @@ export const PokemonTeamBox = styled.ul`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: .6rem 2rem;
+        padding: .4rem 2rem;
         button{
             cursor: pointer;
             padding: 0;
@@ -65,18 +65,12 @@ export const TeamPowerBox = styled.div`
             position: absolute;
             top: 0;
             left: 0;    
-            display: inline-block;
+            width: ${props => props.powerPercent};
+            display: inline-flex;
             animation: expandWidth .8s forwards;
             background: var(--blue);
             height: .5rem;
-            transition: .6s;
-        }
-        @keyframes expandWidth{
-            from{
-                width: 0;
-            } to {
-                width: ${props => props.powerPercent};
-            }
+            transition: .3s;
         }
     }
     

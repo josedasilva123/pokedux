@@ -62,5 +62,6 @@ export function getBattleStats(stats, iv, level){
             }
         }        
     })
+    
     return battleStatusList;
 }

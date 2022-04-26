@@ -7,7 +7,7 @@ export const PokemonTeamCardBox = styled.div`
     gap: 1rem;
 
     min-width: 300px;
-    padding: .6rem 1rem;
+    padding: .5rem 1rem;
     div{
         display: flex;
         align-items: center;
@@ -18,7 +18,7 @@ export const PokemonTeamCardBox = styled.div`
         }
     }
     img{
-        width: 80px;
+        width: 70px;
     }
     button{
         cursor: pointer;
