@@ -1,7 +1,7 @@
 import { types } from "./pokemonTypes";
 
 /* Avalia se o alvo é imune ao movimento ou não */
-function isImune(moveType, pokemonTypes) {
+export function isImune(moveType, pokemonTypes) {
   const imuneTypes = pokemonTypes.filter((type) => {
     const currentMoveType = types.find((t) => {
       return t.type === type.type.name;
@@ -16,7 +16,7 @@ function isImune(moveType, pokemonTypes) {
 }
 
 /* Avalia se o movimento foi super efetivo ou não */
-function isSuperEffective(moveType, pokemonTypes) {
+export function isSuperEffective(moveType, pokemonTypes) {
   let modifier = 0;
   pokemonTypes.forEach((type) => {
     const currentMoveType = types.find((t) => {
@@ -37,7 +37,7 @@ function isSuperEffective(moveType, pokemonTypes) {
   }
 }
 
-function calculateDamage(base, multiplier, attack, defense) {
+export function calculateDamage(base, multiplier, attack, defense) {
   console.log(multiplier);
   const formula1 = (2 * 50) / 5 + 2;
   const formula2 = (formula1 * base * (attack / defense)) / 50;
@@ -49,6 +49,7 @@ function calculateDamage(base, multiplier, attack, defense) {
 }
 
 /* Executa os movimentos */
+/*
 export function doPokemonMove(
   chat,
   setChat,
@@ -72,12 +73,12 @@ export function doPokemonMove(
       defense = 4;
     }
 
-    /* Função para textos dos movimentos */
+    // Função para textos dos movimentos
     function textMove(pokemon, move) {
       return `${pokemon.name.toUpperCase()} utilizou ${move.name.toUpperCase()}`;
     }
 
-    /* Função de chamada de dano */
+    // Função de chamada de dano 
     function doDamage(multiplier) {
       const damage = calculateDamage(
         move.power,
@@ -109,7 +110,7 @@ export function doPokemonMove(
       }
     }
 
-    /* Verificação de imunidade */
+    // Verificação de imunidade 
     const imune = isImune(move.type.name, target.types);
     if (move.damage_class.name === "status") {
       newChat.push({
@@ -127,13 +128,13 @@ export function doPokemonMove(
         text: "Ops! O alvo é imune a este movimento...",
       });
     } else {
-      /* É super efetivo? */
+      // É super efetivo?
       if (
         isSuperEffective(move.type.name, target.types) === "super-effective"
       ) {
         executeMove(2, "Foi super efetivo!");
       } else if (
-        /* Não foi muito efetivo? */
+        // Não foi muito efetivo? 
         isSuperEffective(move.type.name, target.types) === "not-very-effective"
       ) {
         executeMove(.5, "Não foi muito efetivo!");        
@@ -144,3 +145,4 @@ export function doPokemonMove(
     dispatch(setChat(newChat));
     return newChat;
 }
+*/
