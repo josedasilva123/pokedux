@@ -32,7 +32,7 @@ export function getPokemonList(){
     return async (dispatch, getState) => {
         try {
            dispatch(fetchStarted());
-           const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=251");      
+           const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=151");      
            console.log(response.data);
            dispatch(fetchSucess(response.data.results)); 
         } catch (error) {

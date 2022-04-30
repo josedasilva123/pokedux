@@ -174,7 +174,9 @@ export function doPokemonMove(
         setTimeout(() => {
           dispatch(setTargetDamage(false));
         }, 600);
-        nextMove();
+        if(nextMove){
+          nextMove();
+        }
       }
     }
 
