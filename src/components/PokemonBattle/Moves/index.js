@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setChat, setPlayerHP, setEnemyHP } from "../../../store/reducers/PokemonBattle";
-import { doPokemonMove } from "../../../functions/battleFuncions";
+import { setChat, setPlayerHP, setEnemyHP, setEnemyDamage, setPlayerDamage } from "../../../store/reducers/PokemonBattle";
+import { doPokemonMove } from "../../../store/reducers/PokemonBattle";
 import { MoveButton } from "./styles";
 
 const Moves = ({ move }) => {
   const dispatch = useDispatch();
-  const { player, enemy, battleChat, playerHP, enemyHP } = useSelector(
+  const { player, enemy, playerHP, enemyHP } = useSelector(
     (store) => store.pokemonBattle
   );
 
@@ -39,14 +39,12 @@ const Moves = ({ move }) => {
   }, [move]);
 
   async function handleClick() {
-    let newBattleChat = [...battleChat];
-
-    /* Dado de 4 (Retorna de 0 à 3) */
+    // Dado de 4 (Retorna de 0 à 3) 
     const dice = Math.round(Math.random() * 3);
 
     const playerSpeed = player.stats[5].value;
     const enemySpeed = enemy.stats[5].value;
-    /* Sorteia o move inimigo de forma aleatória */
+    // Sorteia o move inimigo de forma aleatória 
     const enemyMove = enemy.moves[dice];
 
     if (currentPP > 0) {
@@ -55,54 +53,22 @@ const Moves = ({ move }) => {
     }
 
     try {
-      /* Requisita a lista completa de informações do move inimigo */
+      // Requisita a lista completa de informações do move inimigo */
       const response = await fetch(enemyMove.move.url);
       
       const currentEnemyMove = await response.json();
       console.log(currentEnemyMove);
       /* Avalia qual pokémon é mais rapido para definir o primeiro ataque */
       if (playerSpeed > enemySpeed) {
-        newBattleChat = doPokemonMove(
-          newBattleChat,
-          setChat,
-          dispatch,
-          player,
-          enemy,
-          currentMove,
-          enemyHP,
-          setEnemyHP,
-        );
-        doPokemonMove(
-          newBattleChat,
-          setChat,
-          dispatch,
-          enemy,
-          player,
-          currentEnemyMove,
-          playerHP,
-          setPlayerHP
-        );
+        dispatch(doPokemonMove(currentMove, player, enemy, enemyHP, setEnemyHP, setEnemyDamage, () => {
+          dispatch(doPokemonMove(currentEnemyMove, enemy, player, playerHP, setPlayerHP, setPlayerDamage)); 
+        })); 
+        
       } else {
-        newBattleChat = doPokemonMove(
-          newBattleChat,
-          setChat,
-          dispatch,
-          enemy,
-          player,
-          currentEnemyMove,
-          playerHP,
-          setPlayerHP
-        );
-        doPokemonMove(
-          newBattleChat,
-          setChat,
-          dispatch,
-          player,
-          enemy,
-          currentMove,
-          enemyHP,
-          setEnemyHP,
-        );
+        dispatch(doPokemonMove(currentEnemyMove, enemy, player, playerHP, setPlayerHP, setEnemyDamage, () => {
+          dispatch(doPokemonMove(currentMove, player, enemy, enemyHP, setEnemyHP, setPlayerDamage));  
+        }));
+                
       }
     } catch (error) {
       console.log("Desculpe, ocorreu um erro! :(");

@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 export const MoveListBox = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  animation: fadeIn .3s forwards;
   ${(props) =>
     props.hidden &&
     css`
@@ -26,6 +27,14 @@ export const MoveListBox = styled.ul`
     transition: 0.3s;
     &:hover {
       filter: brightness(0.8);
+    }
+  }
+
+  @keyframes fadeIn{
+    from{
+      opacity: 0;
+    } to {
+      opacity: 1;
     }
   }
 `;
@@ -75,35 +84,54 @@ export const BattleBox = styled.div`
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-  } 
+  }
 `;
 export const Sprite = styled.img`
-  transition: .4s;
+  transition: 0.4s;
+  padding: 1rem 2rem;
   ${(props) => {
-    if (props.owner === "player") {
-      return css`
-        padding: 1rem 2rem;
-        animation: fadeInLeft 0.8s forwards;
-      `;
-    } else if (props.owner === "enemy") {
-      return css`
-        padding: 1rem 2rem;
-        animation: fadeInRight 0.8s forwards;
-      `;
+    if (props.starting) {
+      if (props.owner === "player") {
+        return css`
+          animation: fadeInLeft 0.8s forwards;
+        `;
+      } else if (props.owner === "enemy") {
+        return css`
+          animation: fadeInRight 0.8s forwards;
+        `;
+      }
     }
   }}
-  ${(props) => props.fainted && css`     
-      animation: faint .6s forwards;
+  ${(props) =>
+    props.fainted &&
+    css`
+      animation: faint 0.3s forwards;
+    `}
 
-  `}
+  ${(props) =>
+    props.inDamage &&
+    css`
+      animation: inDamage 0.3s infinite;
+    `}
 
-  @keyframes faint{
-    from{
+  @keyframes inDamage {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes faint {
+    from {
       opacity: 1;
       transform: translateX(0);
-    } to {
+    }
+    to {
       opacity: 0;
-      transform: translateY(3rem)
+      transform: translateX(0);
+      transform: translateY(3rem);
     }
   }
   @keyframes fadeInLeft {
@@ -148,6 +176,6 @@ export const LifeBar = styled.div`
     width: ${(props) => props.currentHP};
     height: 6px;
     background: var(--blue);
-    transition: .6s;
+    transition: 0.6s;
   }
 `;
