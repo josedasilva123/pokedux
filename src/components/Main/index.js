@@ -1,12 +1,15 @@
 import React from "react";
+
 import Header from "../Header";
-import { Container } from "../../styles";
 import PokemonList from "../PokemonList";
 import CurrentPokemon from "../CurrentPokemon";
 import PokemonTeam from "../PokemonTeam";
-import { MainBox } from "./style";
-import { FlexGrid } from "../../styles/GlobalComponents";
 import PokemonBattle from "../PokemonBattle";
+
+import { MainBox } from "./styles";
+import { Container } from "../../styles";
+import { FlexGrid } from "../../styles/GlobalComponents";
+
 
 
 const Main = () => { 

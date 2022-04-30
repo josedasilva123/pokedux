@@ -23,7 +23,7 @@ const HPBox = ({ currentHP, maxHP }) => {
   return (
     <LifeBarBox>
       <p>
-        Enemy: HP {HPMask(currentHP)}/{maxHP}
+        HP {HPMask(currentHP)}/{maxHP}
       </p>
       <LifeBar currentHP={getHPPercent(currentHP, maxHP)}>
         <span></span>

@@ -129,6 +129,7 @@ export const Sprite = styled.img`
   }
 `;
 export const LifeBarBox = styled.div`
+  min-width: 160px;
   padding: 1rem;
 `;
 export const LifeBar = styled.div`
