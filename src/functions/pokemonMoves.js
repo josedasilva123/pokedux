@@ -39,19 +39,19 @@ export const pokemonMoves = [
         id: 1,
         name: 'bulbasaur',
         mainMoves: ['razor-wind', 'giga-drain', 'double-edge', 'swords-dance'],
-        learnableMoves: ['razor-wind', 'absorb', 'giga-drain', 'double-edge', 'swords-dance', 'tackle'],
+        learnableMoves: ['razor-wind', 'absorb', 'mega-drain', 'giga-drain', 'double-edge', 'swords-dance', 'razor-leaf', 'growth', 'tackle'],
     },  
     {
         id: 2,
         name: 'ivysaur',
         mainMoves: ['razor-wind', 'giga-drain', 'double-edge', 'swords-dance'],
-        learnableMoves: ['razor-wind', 'absorb', 'mega-drain', 'giga-drain', 'double-edge', 'swords-dance', 'razor-leaf', 'tackle'],
+        learnableMoves: ['razor-wind', 'absorb', 'mega-drain', 'giga-drain', 'double-edge', 'swords-dance', 'razor-leaf', 'growth', 'tackle'],
     },  
     {
         id: 3,
         name: 'venusaur',
         mainMoves: ['razor-wind', 'giga-drain', 'double-edge', 'swords-dance'],
-        learnableMoves: ['razor-wind', 'absorb', 'mega-drain', 'giga-drain', 'double-edge', 'swords-dance', 'razor-leaf', 'tackle'],
+        learnableMoves: ['razor-wind', 'absorb', 'mega-drain', 'giga-drain', 'double-edge', 'swords-dance', 'razor-leaf', 'growth', 'tackle'],
     },  
     {
         id: 4,
@@ -287,7 +287,60 @@ export const pokemonMoves = [
         mainMoves: ['leech-life', 'wing-attack', 'double-edge', 'giga-drain'],
         learnableMoves: ['razor-wind', 'leech-life', 'wing-attack', 'double-edge', 'mega-drain', 'giga-drain', 'crunch'],
     }, 
-          
+    {
+        id: 43,
+        name: 'oddish',
+        mainMoves: ['swords-dance', 'double-edge', 'sludge-bomb', 'razor-leaf'],
+        learnableMoves: ['swords-dance', 'double-edge', 'sludge-bomb', 'razor-leaf', 'absorb', 'mega-drain', 'giga-drain', 'growth'],
+    },  
+    {
+        id: 44,
+        name: 'gloom',
+        mainMoves: ['swords-dance', 'double-edge', 'sludge-bomb', 'razor-leaf'],
+        learnableMoves: ['swords-dance', 'double-edge', 'sludge-bomb', 'razor-leaf', 'absorb', 'mega-drain', 'giga-drain', 'growth'],
+    },  
+    {
+        id: 45,
+        name: 'vileplume',
+        mainMoves: ['swords-dance', 'double-edge', 'sludge-bomb', 'razor-leaf'],
+        learnableMoves: ['swords-dance', 'double-edge', 'body-slam', 'sludge-bomb', 'razor-leaf', 'absorb', 'mega-drain', 'giga-drain', 'growth'],
+    },  
+    {
+        id: 46,
+        name: 'paras',
+        mainMoves: ['body-slam', 'psybeam', 'giga-drain', 'leech-life'],
+        learnableMoves: ['swords-dance', 'double-edge', 'body-slam', 'psybeam', 'absorb', 'mega-drain', 'giga-drain', 'sludge-bomb', 'growth', 'agility', 'string-shot', 'screech','leech-life', 'slash'],
+    },  
+    {
+        id: 47,
+        name: 'parasect',
+        mainMoves: ['body-slam', 'psybeam', 'giga-drain', 'leech-life'],
+        learnableMoves: ['swords-dance', 'double-edge', 'body-slam', 'psybeam', 'absorb', 'mega-drain', 'giga-drain', 'sludge-bomb', 'growth', 'agility', 'string-shot', 'screech', 'leech-life', 'slash'],
+    }, 
+    {
+        id: 48,
+        name: 'venonat',
+        mainMoves: ['double-edge', 'psychic', 'giga-drain', 'leech-life'],
+        learnableMoves: ['swords-dance', 'double-edge', 'body-slam', 'psybeam', 'psychic', 'absorb', 'mega-drain', 'giga-drain', 'sludge-bomb', 'agility', 'screech', 'string-shot', 'leech-life'],
+    },  
+    {
+        id: 49,
+        name: 'venonat',
+        mainMoves: ['razor-wind', 'psychic', 'giga-drain', 'leech-life'],
+        learnableMoves: ['razor-wind', 'swords-dance', 'double-edge', 'body-slam', 'psybeam', 'psychic', 'absorb', 'mega-drain', 'giga-drain', 'sludge-bomb', 'agility', 'screech', 'string-shot', 'leech-life'],
+    },   
+    {
+        id: 50,
+        name: 'diglett',
+        mainMoves: ['body-slam', 'screech', 'earthquake', 'double-edge'],
+        learnableMoves: ['body-slam', 'screech', 'earthquake', 'double-edge', 'agility', 'feint-attack', 'sludge-bomb'],
+    },
+    {
+        id: 51,
+        name: 'digtrio',
+        mainMoves: ['body-slam', 'screech', 'earthquake', 'double-edge'],
+        learnableMoves: ['body-slam', 'screech', 'earthquake', 'double-edge', 'agility', 'feint-attack', 'sludge-bomb'],
+    },         
 ]
 
 export const allMoves = [
@@ -656,6 +709,14 @@ export const allMoves = [
         pp: 20,
     },
     {
+        name: 'swords-dance',
+        type: TYPE_NORMAL,
+        power: 1,
+        stat: 'growth',
+        category: CATEGORY_BUFF,        
+        pp: 20,
+    },
+    {
         name: 'harden',
         type: TYPE_NORMAL,
         power: 1,
@@ -688,5 +749,23 @@ export const allMoves = [
         category: CATEGORY_DEBUFF,        
         pp: 20,
     },
+    {
+        name: 'screech',
+        type: TYPE_NORMAL,
+        power: 2,
+        stat: 'defense',
+        category: CATEGORY_DEBUFF,        
+        pp: 35,
+        
+    }
 ]
     
+export function getMainMoves(id){
+    const pokemon = pokemonMoves.find(list => list.id === id);
+    if(pokemon){
+        return pokemon.mainMoves;
+    } else {
+        console.log('Pokémon inválido.')
+    }
+    
+}
