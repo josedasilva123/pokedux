@@ -606,7 +606,7 @@ export const pokemonMoves = [
         id: 95,
         name: 'onix',
         mainMoves: ['body-slam', 'earthquake', 'rock-throw', 'screech'],
-        learnableMoves: ['tackle', 'body-slam', 'double-edge', 'earthquake', 'rock-throw', 'screech', 'harden', 'dragon-breath', 'iron-tail'],
+        learnableMoves: ['tackle', 'body-slam', 'double-edge', 'earthquake', 'rock-throw', 'rock-slide', 'screech', 'harden', 'dragon-breath', 'iron-tail'],
     },  
     {
         id: 96,
@@ -619,7 +619,19 @@ export const pokemonMoves = [
         name: 'hypno',
         mainMoves: ['fire-punch', 'body-slam', 'psychic', 'shadow-ball'],
         learnableMoves: ['fire-punch', 'ice-punch', 'thunder-punch', 'body-slam', 'double-edge', 'psybeam', 'psychic', 'zap-cannon', 'shadow-ball'],
-    },         
+    },
+    {
+        id: 98,
+        name: 'krabby',
+        mainMoves: ['body-slam', 'ice-beam', 'crabhammer', 'swords-dance'],
+        learnableMoves: ['swords-dance', 'stomp', 'body-slam', 'double-edge', 'water-gun', 'ice-beam', 'bubble-beam', 'agility', 'crabhammer'],
+    },
+    {
+        id: 99,
+        name: 'kingler',
+        mainMoves: ['body-slam', 'ice-beam', 'crabhammer', 'swords-dance'],
+        learnableMoves: ['swords-dance', 'stomp', 'body-slam', 'double-edge', 'water-gun', 'hydro-pump', 'ice-beam', 'bubble-beam', 'agility', 'crabhammer'],
+    },               
 
 ]
 
@@ -889,6 +901,15 @@ export const allMoves = [
         category: CATEGORY_PHYSICAL,
         pp: 10,
     },
+    {
+        name: 'crabhammer',
+        type: TYPE_WATER,
+        power: 	100,
+        accuracy: 90,
+        category: CATEGORY_PHYSICAL,
+        pp: 10,
+    },
+
     
     //Special
     {
