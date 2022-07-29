@@ -18,6 +18,7 @@ import Moves from "./Moves";
 import HPBox from "./HPBox";
 
 import { Battle, BattleGrid, BattleBox, MoveListBox, Sprite } from "./styles";
+import { pokemonMoves } from "../../functions/pokemonMoves/data";
 
 const PokemonBattle = () => {
   const [starting, setStarting] = useState(false);
@@ -45,7 +46,9 @@ const PokemonBattle = () => {
       }, 800);
       // Player's Pokemon
       const newPlayerStats = getBattleStats(list[0].stats, 31, 50);
-      const newPlayerMoves = [...list[0].moves];
+      const newPlayerMoves = pokemonMoves.find(
+        (pokemon) => pokemon.name === list[0].name
+      ).mainMoves;
       newPlayerMoves.length = 4;
 
       // Enemy's Pokemon
@@ -156,7 +159,7 @@ const PokemonBattle = () => {
               {!starting && (
                 <MoveListBox hidden={battleChat?.length > 0 ? true : false}>
                   {player.moves?.map((move) => (
-                    <Moves move={move.move} key={move.move.name} />
+                    <Moves move={move} key={move} />
                   ))}
                   <button onClick={() => dispatch(runFromBattle())}>
                     Fugir

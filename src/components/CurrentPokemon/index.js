@@ -15,10 +15,11 @@ import { CurrentPokemonBox, ImageGrid, PowerLevel, StatsList } from "./styles";
 import { addPokemon } from '../../store/reducers/PokemonTeam/index'
 
 const CurrentPokemon = () => {
-  const dispatch = useDispatch();
   const { id } = useParams();
+
+  const dispatch = useDispatch();  
   const currentPokemon = useSelector((store) => store.currentPokemon);
-  const {list} = useSelector((store) => store.pokemonTeam);
+  const { list } = useSelector((store) => store.pokemonTeam);
 
   useEffect(() => {
     if (id) {

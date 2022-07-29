@@ -1,5 +1,5 @@
 const initialState = {
-    loading: false, // counter
+    loading: false, 
     data: null,
     error: null,
 }
@@ -16,7 +16,7 @@ export const resetCurrentPokemon = () => ({type: RESET_POKEMON});
 
 const reducer = (state = initialState, action) => {
     switch(action.type){
-        case FETCH_STARTED:
+        case FETCH_STARTED:            
             return {...state, loading: true, data: null, error: null};
         case FETCH_SUCESS:
             return {...state, loading: false, data: action.payload};
@@ -32,12 +32,12 @@ const reducer = (state = initialState, action) => {
 export function getPokemon(url){
     return async (dispatch, getState) => {       
         try {
-           dispatch(fetchStarted());
+           dispatch(fetchStarted()); 
            const response = await fetch(url);
            const json = await response.json();
            dispatch(fetchSucess(json)); 
         } catch (error) {
-           return dispatch(fetchError('Não foi possível carregar os pokémons.'));    
+           dispatch(fetchError('Não foi possível carregar os pokémons.')); //setError   
         }
     }
 }

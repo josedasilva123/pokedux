@@ -2468,6 +2468,78 @@ export const pokemonMoves = [
       "crunch",
     ],
   },
+  {
+    id: 143,
+    name: "snorlax",
+    mainMoves: ["thunder-punch", "mega-kick", "body-slam", "double-edge"],
+    learnableMoves: [
+      "fire-punch", "ice-punch", "thunder-punch", "mega-kick", "body-slam", "double-edge", "flamethrower", "water-gun", "hydro-pump", "ice-beam", "bubble-beam", "thunderbolt", "thunder", "earthquake", "psychic", "screech", "fire-blast", "rock-slide", "zap-cannon", "crunch", "shadow-ball"
+    ],
+  },
+  {
+    id: 144,
+    name: "articuno",
+    mainMoves: ["razor-wind", "ice-beam", "bubble-beam", "aerial-ace"],
+    learnableMoves: [
+      "razor-wind", "gust", "double-edge", "water-gun", "bubble-beam", "peck", "agility", "aerial-ace"
+    ],
+  },
+  {
+    id: 145,
+    name: "zapdos",
+    mainMoves: ["razor-wind", "drill-peck", "thunderbolt", "aerial-ace"],
+    learnableMoves: [
+      "razor-wind", "double-edge", "peck", "thunder-shock", "thunderbolt", "thunder", "zap-cannon", "aerial-ace", "agility"
+    ],
+  },
+  {
+    id: 146,
+    name: "moltres",
+    mainMoves: ["razor-wind", "flamethrower", "fire-blast", "aerial-ace"],
+    learnableMoves: [
+      "razor-wind", "gust", "wing-attack", "double-edge", "ember", "peck", "agility", "fire-blast", "aerial-ace"
+    ],
+  },
+  {
+    id: 147,
+    name: "dratini",
+    mainMoves: ["body-slam", "flamethrower", "ice-beam", "thunderbolt"],
+    learnableMoves: [
+      "slam", "body-slam", "double-edge", "flamethrower", "water-gun", "hydro-pump", "ice-beam", "bubble-beam", "thunderbolt", "thunder", "agility", "fire-blast", "zap-cannon", "dragon-breath", "dragon-breath"
+    ],
+  },
+  {
+    id: 148,
+    name: "dragonair",
+    mainMoves: ["body-slam", "flamethrower", "ice-beam", "thunderbolt"],
+    learnableMoves: [
+      "slam", "body-slam", "double-edge", "flamethrower", "water-gun", "hydro-pump", "ice-beam", "bubble-beam", "thunderbolt", "thunder", "agility", "fire-blast", "zap-cannon", "dragon-breath", "dragon-breath"
+    ],
+  },
+  {
+    id: 149,
+    name: "dragonite",
+    mainMoves: ["body-slam", "flamethrower", "ice-beam", "thunderbolt"],
+    learnableMoves: [
+      "slam", "body-slam", "double-edge", "flamethrower", "water-gun", "hydro-pump", "ice-beam", "bubble-beam", "thunderbolt", "thunder", "agility", "fire-blast", "zap-cannon", "dragon-breath", "dragon-breath"
+    ],
+  },
+  {
+    id: 150,
+    name: "mewtwo",
+    mainMoves: ["flamethrower", "ice-beam", "psychic", "recover"],
+    learnableMoves: [
+      "fire-punch", "ice-punch", "thunder-punch", "mega-kick", "body-slam", "double-edge", "water-gun", "ice-beam", "psybeam", "bubble-beam", "thunderbolt", "thunder", "earthquake", "psychic", "agility", "recover", "fire-blast", "zap-cannon", "iron-tail", "shadow-ball"
+    ],
+  },
+  {
+    id: 151,
+    name: "mew",
+    mainMoves: ["flamethrower", "ice-beam", "psychic", "recover"],
+    learnableMoves: [
+      "fire-punch", "ice-punch", "thunder-punch", "mega-kick", "body-slam", "double-edge", "water-gun", "ice-beam", "psybeam", "bubble-beam", "thunderbolt", "thunder", "earthquake", "psychic", "agility", "recover", "fire-blast", "zap-cannon", "iron-tail", "shadow-ball"
+    ],
+  },
 ];
 
 export const allMoves = [
@@ -2854,7 +2926,7 @@ export const allMoves = [
     name: "hydro-pump",
     type: TYPE_WATER,
     power: 110,
-    accuracy: 80,
+    accuracy: 75,
     category: CATEGORY_SPECIAL,
     pp: 5,
   },
