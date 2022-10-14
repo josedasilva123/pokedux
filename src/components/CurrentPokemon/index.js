@@ -80,9 +80,6 @@ const CurrentPokemon = () => {
               />
             ))}
           </StatsList>
-          {currentPokemon.data.moves.map(move => (
-            <p>{move.move.name}</p>
-          ))}
         </div>
       ) : (
         <div>
